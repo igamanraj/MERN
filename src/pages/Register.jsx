@@ -1,35 +1,63 @@
 import { useState } from "react";
-export const Register = () => {
+import { useNavigate } from "react-router-dom";
 
+const URL = "http://localhost:5000/login"
+
+
+export const Register = () => {
   const [user, setUser] = useState({
-    username : "",
-    email : "",
-    phone : "",
-    password : "",
-  })
+    username: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
 
   // handling the input value
   const handleInput = (e) => {
-    console.log(e)
+    console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
     setUser({
       ...user,
-      [name] : value,
-    })
-  }
+      [name]: value,
+    });
+  };
 
   // handling form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user)
-  }
+    console.log(user);
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        setUser({
+          username: "",
+          email: "",
+          phone: "",
+          password: "",
+        });
+        navigate("/login")
+      }
+      console.log(response);
+    } catch (error) {
+      console.log("Register : ", error);
+    }
+  };
 
   return (
     <>
       <section>
-        <main> 
+        <main>
           <div className="section-registration">
             <div className="container grid grid-two-cols">
               <div className="registration-image">
@@ -59,7 +87,7 @@ export const Register = () => {
                     />
                   </div>
                   <div>
-                  <label htmlFor="email">email</label>
+                    <label htmlFor="email">email</label>
                     <input
                       type="email"
                       name="email"
@@ -72,7 +100,7 @@ export const Register = () => {
                     />
                   </div>
                   <div>
-                  <label htmlFor="phone">phone</label>
+                    <label htmlFor="phone">phone</label>
                     <input
                       type="number"
                       name="phone"
@@ -85,7 +113,7 @@ export const Register = () => {
                     />
                   </div>
                   <div>
-                  <label htmlFor="password">password</label>
+                    <label htmlFor="password">password</label>
                     <input
                       type="password"
                       name="password"
@@ -98,7 +126,9 @@ export const Register = () => {
                     />
                   </div>
                   <br />
-                  <button type="submit" className="btn btn-submit">Register Now</button>
+                  <button type="submit" className="btn btn-submit">
+                    Register Now
+                  </button>
                 </form>
               </div>
             </div>

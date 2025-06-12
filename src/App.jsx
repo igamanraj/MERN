@@ -7,6 +7,7 @@ import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
+import { Error } from "./pages/Error.jsx"
 const App = () => {
   return(
   <>
@@ -19,8 +20,9 @@ const App = () => {
         <Route path="/Services" element={<Services />}/>
         <Route path="/Register" element={<Register />}/>
         <Route path="/Login" element={<Login />}/>
+        <Route path="*" element={<Error />}/>
       </Routes>
-    /<Footer />
+    <Footer />
     </BrowserRouter>
     </>
   )

@@ -93,6 +93,14 @@ export const Contact = () => {
               </section>
             </div>
           </div>
+          <section className="mb-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14241.326729861587!2d80.9092969396655!3d26.829400823568587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdc8bfb928d5%3A0x9f9163ace7ebaf6c!2sCharbagh%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1743871664075!5m2!1sen!2sin" 
+            width="100%" 
+            height="450" 
+            allowFullScreen 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"></iframe>
+            </section>
         </section>
       </main>
     </>
