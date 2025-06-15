@@ -1,11 +1,31 @@
 import { useState } from "react";
+import { useAuth } from "../store/Auth";
+
+const URL = "http://localhost:5000/contact";
+
+const defaultContactForm = {
+  username : "",
+  email : "",
+  message : "",
+}
 
 export const Contact = () => {
-  const [contact, setContact] = useState({
-    username: "",
-    email: "",
-    message: "",
-  });
+  const [contact, setContact] = useState(defaultContactForm );
+
+  const [userData, setUserData] = useState(true)
+
+  const { user } = useAuth();
+
+  if(userData && user){
+    setContact({
+      username : user.username,
+      email : user.email,
+      message : "",
+    })
+    setUserData(false);
+  }
+
+  // handle input functionality
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -23,9 +43,30 @@ export const Contact = () => {
   };
 
   // handling form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(contact);
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
+      console.log("contact", response);
+
+      if (response.ok) {
+        setContact(defaultContactForm);
+        const data = await response.json()
+        console.log(data);
+        alert("Message sent successfully")
+      }
+    } catch (error) {
+      alert("Message not send")
+      console.log(error);
+    }
   };
 
   return (
@@ -94,13 +135,15 @@ export const Contact = () => {
             </div>
           </div>
           <section className="mb-3">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14241.326729861587!2d80.9092969396655!3d26.829400823568587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdc8bfb928d5%3A0x9f9163ace7ebaf6c!2sCharbagh%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1743871664075!5m2!1sen!2sin" 
-            width="100%" 
-            height="450" 
-            allowFullScreen 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"></iframe>
-            </section>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14241.326729861587!2d80.9092969396655!3d26.829400823568587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdc8bfb928d5%3A0x9f9163ace7ebaf6c!2sCharbagh%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1743871664075!5m2!1sen!2sin"
+              width="100%"
+              height="450"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </section>
         </section>
       </main>
     </>

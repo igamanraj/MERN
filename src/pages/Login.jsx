@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/Auth";
 
 const URL = "http://localhost:5000/login"
 
@@ -11,6 +12,7 @@ export const Login = () => {
   });
 
   const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth()
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -37,6 +39,9 @@ export const Login = () => {
           });
           console.log("Login",response)
           if(response.ok){
+            alert("Login Successful")
+            const res_data = await response.json();
+            storeTokenInLS(res_data.token)
             setUser({
               email : "",
               password : "",
