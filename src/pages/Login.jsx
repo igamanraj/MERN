@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
+import { toast } from "sonner";
 
-const URL = "http://localhost:5000/login"
-
+const URL = "http://localhost:5000/login";
 
 export const Login = () => {
   const [user, setUser] = useState({
-    email : "",
-    password : "",
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
-  const { storeTokenInLS } = useAuth()
+  const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -20,42 +20,41 @@ export const Login = () => {
 
     setUser({
       ...user,
-      [name] : value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   // handling form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user)
+    console.log(user);
 
-      try {
-          const response = await fetch(URL,{
-            method : "POST",
-            headers: {
-              "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(user)
-          });
-          console.log("Login",response)
-          if(response.ok){
-            alert("Login Successful")
-            const res_data = await response.json();
-            storeTokenInLS(res_data.token)
-            setUser({
-              email : "",
-              password : "",
-            })
-            navigate("/")
-          }else{
-            alert("invalid credentials")
-            console.log("invalid credentials")
-          }
-      } catch (error) {
-        console.log(error)
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      console.log("Login", response);
+      const res_data = await response.json();
+      if (response.ok) {
+        toast.success(res_data.extraDetails ? res_data.extraDetails : res_data.message || "Login Successfully")
+        storeTokenInLS(res_data.token);
+        setUser({
+          email: "",
+          password: "",
+        });
+        navigate("/");
+      } else {
+        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message || "Login Failed")
+        console.log("invalid credentials");
       }
-    
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>

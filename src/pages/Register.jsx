@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
+import { toast } from "sonner";
 
 const URL = "http://localhost:5000/register"
 
@@ -43,9 +44,16 @@ export const Register = () => {
         },
         body: JSON.stringify(user),
       });
+
+
+      const res_data = await response.json()
+        console.log("response from server", res_data.message)
+        // console.log(response);
+
+
+
+
       if (response.ok) {
-        const res_data = await response.json()
-          console.log("response from server", res_data)
           // store token in localstorage
           storeTokenInLS(res_data.token); 
           setUser({
@@ -54,9 +62,11 @@ export const Register = () => {
           phone: "",
           password: "",
         });
-        navigate("/login")
+        toast.success("Registration Successfull",{ description : "You are successfyully registered"})
+        navigate("/")
+      }else{
+        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message)
       }
-      console.log(response);
     } catch (error) {
       console.log("Register : ", error);
     }
