@@ -9,6 +9,12 @@ import { Logout } from "./pages/Logout.jsx";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
 import { Error } from "./pages/Error.jsx"
+import { AdminLayout } from "./component/layouts/admin-layout.jsx";
+import { AdminUsers } from "./pages/Admin-Users.jsx";
+import { AdminContacts } from "./pages/Admin-Contacts.jsx";
+import { AdminUpdate } from "./pages/Admin-update.jsx";
+
+
 const App = () => {
   return(
   <>
@@ -21,8 +27,13 @@ const App = () => {
         <Route path="/Services" element={<Services />}/>
         <Route path="/Register" element={<Register />}/>
         <Route path="/Login" element={<Login />}/>
-        <Route path="/Logout" element={<Logout/>}/>
+        <Route path="/Logout" element={<Logout />}/>
         <Route path="*" element={<Error />}/>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="users" element={<AdminUsers />}/>
+          <Route path="contacts" element={<AdminContacts />}/>
+          <Route path="users/:id/edit" element={<AdminUpdate />}/>
+        </Route>
       </Routes>
     <Footer />
     </BrowserRouter>

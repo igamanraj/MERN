@@ -3,7 +3,7 @@ export const Footer = () => {
   return (
     <>
       <div className="footer">
-        <p>@Technical 2025</p>
+        <p>@NanoTech 2025</p>
       </div>
     </>
   );

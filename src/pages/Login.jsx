@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
 
-const URL = "http://localhost:5000/login";
+const URL = "https://mern-backend-4bps.onrender.com/login";
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -40,7 +40,7 @@ export const Login = () => {
       console.log("Login", response);
       const res_data = await response.json();
       if (response.ok) {
-        toast.success(res_data.extraDetails ? res_data.extraDetails : res_data.message || "Login Successfully")
+        toast.success(res_data.extraDetails ? res_data.extraDetails : res_data.message || "Login Successfully",{description : "You have successfully logged in to your account"})
         storeTokenInLS(res_data.token);
         setUser({
           email: "",

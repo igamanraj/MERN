@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
 
-const URL = "http://localhost:5000/register"
+const URL = "https://mern-backend-4bps.onrender.com/register"
 
 
 export const Register = () => {
