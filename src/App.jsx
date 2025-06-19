@@ -21,6 +21,8 @@ const App = () => {
     <BrowserRouter>
     <Navbar />
       <Routes>
+        {/* Public Routes */}
+        {/* Home, About, Contact, Services, Register, Login, Logout */}
         <Route path="/" element={<Home />}/>
         <Route path="/About" element={<About />}/>
         <Route path="/Contact" element={<Contact />}/>
@@ -28,7 +30,10 @@ const App = () => {
         <Route path="/Register" element={<Register />}/>
         <Route path="/Login" element={<Login />}/>
         <Route path="/Logout" element={<Logout />}/>
+        {/* catches all unmatched routes */}
         <Route path="*" element={<Error />}/>
+
+        {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />}/>
           <Route path="contacts" element={<AdminContacts />}/>
