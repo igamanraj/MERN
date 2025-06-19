@@ -18,7 +18,7 @@ export const AdminLayout = () => {
 
 
   if(!user.isAdmin){
-    toast.warning(data.error || "Access denied", {
+    toast.warning("Access denied", {
             description: "You must be an admin to view this page.",
           });
     return <Navigate to="/error"/>
