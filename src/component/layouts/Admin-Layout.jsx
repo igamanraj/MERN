@@ -4,6 +4,7 @@ import { FaMessage } from "react-icons/fa6";
 import "./Admin-Layout.css";
 import { useAuth } from "../../store/Auth"
 import { PuffLoader} from "react-spinners"
+import { toast } from "sonner";
 
 export const AdminLayout = () => {
 
@@ -17,6 +18,9 @@ export const AdminLayout = () => {
 
 
   if(!user.isAdmin){
+    toast.warning(data.error || "Access denied", {
+            description: "You must be an admin to view this page.",
+          });
     return <Navigate to="/error"/>
   }
 
