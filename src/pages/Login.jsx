@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
 
-const URL = "https://mern-backend-4bps.onrender.com/login";
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -12,7 +11,7 @@ export const Login = () => {
   });
 
   const navigate = useNavigate();
-  const { storeTokenInLS } = useAuth();
+  const { storeTokenInLS , API} = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -30,7 +29,7 @@ export const Login = () => {
     console.log(user);
 
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${API}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

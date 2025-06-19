@@ -118,3 +118,16 @@
   background-color: #e5f3ff;
   color: #0073e6;
 }
+
+
+.container.admin-contacts {
+  padding: 2rem;
+  /* border-radius: 16px; */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+}
+
+.admin-contacts .delete-btn{
+  background-color: #6d74ff;
+  color: white;
+}

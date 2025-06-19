@@ -1,7 +1,7 @@
 import { useAuth } from "../store/Auth";
 
 export const Services = () => {
-  const { services } = useAuth();
+  const { services,} = useAuth();
 
   return (
     <>

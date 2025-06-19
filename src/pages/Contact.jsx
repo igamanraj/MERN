@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
 
-const URL = "http://localhost:5000/contact";
-
 const defaultContactForm = {
   username : "",
   email : "",
@@ -15,7 +13,7 @@ export const Contact = () => {
 
   const [userData, setUserData] = useState(true)
 
-  const { user } = useAuth();
+  const { user, API } = useAuth();
 
   if(userData && user){
     setContact({
@@ -49,7 +47,7 @@ export const Contact = () => {
     console.log(contact);
 
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${API}/contact`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

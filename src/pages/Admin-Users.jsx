@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 
 export const AdminUsers = () => {
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, API } = useAuth();
   const [users, setUsers] = useState([]);
   const errorShown = useRef(false);
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export const AdminUsers = () => {
   // delete the user on clicking the delete button
   const deleteUser = async(id) =>{
     try {
-        const response = await fetch(`http://localhost:5000/admin/users/delete/${id}`,{
+        const response = await fetch(`${API}/admin/users/delete/${id}`,{
             method : "DELETE",
             headers :{
                 Authorization : authorizationToken,
@@ -54,7 +54,7 @@ export const AdminUsers = () => {
         
         if(response.ok){
             getAllUsersData();
-            toast.success("Deletion Success", {description : "You just delete a user."})
+            toast.success("Deletion Success", {description : "You just deleted a user."})
         }
 
     } catch (error) {
@@ -69,7 +69,7 @@ export const AdminUsers = () => {
   return (
     <section className="admin-users-section">
       <div className="container">
-        <h1>Admin User Data</h1>
+        <h1>Admin-User Data</h1>
       </div>
       <div className="container admin-users">
         <table>
