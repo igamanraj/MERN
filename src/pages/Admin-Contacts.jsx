@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
+import "./Admin-Contact.css";
 
 export const AdminContacts = () => {
   const [contactData, setContactData] = useState([]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [contactToDelete, setContactToDelete] = useState(null);
+
   const { authorizationToken, API } = useAuth();
 
   const getContactsData = async () => {
@@ -16,10 +20,8 @@ export const AdminContacts = () => {
       });
 
       const data = await response.json();
-      //   console.log("Contact Data", data);
       if (response.ok) {
         setContactData(data);
-        // console.log(response);
       }
     } catch (error) {
       console.log(error);
@@ -28,17 +30,13 @@ export const AdminContacts = () => {
 
   const deleteContact = async (id) => {
     try {
-      const response = await fetch(
-        `${API}/admin/contacts/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/admin/contacts/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const data = await response.json();
-      console.log("Contacts after deletion :", data);
       if (response.ok) {
         getContactsData();
         toast.success("Contact Deleted", {
@@ -48,6 +46,22 @@ export const AdminContacts = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleDeleteClick = (_id) => {
+    setContactToDelete(_id);
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = () => {
+    deleteContact(contactToDelete);
+    setShowConfirm(false);
+    setContactToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(false);
+    setContactToDelete(null);
   };
 
   useEffect(() => {
@@ -64,13 +78,13 @@ export const AdminContacts = () => {
             const { username, email, message, _id } = currContactData;
 
             return (
-              <div key={index}>
-                <p>{username}</p>
-                <p>{email}</p>
-                <p>{message}</p>
+              <div key={index} className="contact-card">
+                <p><strong>Username:</strong> {username}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Message:</strong> "{message}"</p>
                 <button
                   className="delete-btn"
-                  onClick={() => deleteContact(_id)}
+                  onClick={() => handleDeleteClick(_id)}
                 >
                   Delete
                 </button>
@@ -79,6 +93,19 @@ export const AdminContacts = () => {
           })}
         </div>
       </section>
+
+      {/* Custom Confirmation Modal */}
+      {showConfirm && (
+        <div className="confirm-modal">
+          <div className="confirm-box">
+            <p>Are you sure you want to delete this contact?</p>
+            <div className="btn-group">
+              <button className="btn-confirm" onClick={confirmDelete}>Yes</button>
+              <button className="btn-cancel" onClick={cancelDelete}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

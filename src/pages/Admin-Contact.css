@@ -1,0 +1,134 @@
+.admin-contacts-section {
+  padding: 3rem 2rem;
+  background-color: #181818;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-contacts-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.admin-contacts {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 1.5rem;
+}
+
+.admin-contacts > div {
+  background-color: #222;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-contacts p {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ddd;
+  word-break: break-word;
+}
+
+.delete-btn {
+  margin-top: 1rem;
+  align-self: flex-start;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #5a67f8;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #3b47d6;
+}
+
+
+
+/* custom confirmation pop-up window  */
+
+.contact-card {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+.delete-btn {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #4f46e5;
+}
+
+/* Confirmation Modal */
+.confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirm-box {
+  background-color: #222;
+  padding: 5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-confirm,
+.btn-cancel {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #6b7280;
+  color: white;
+}

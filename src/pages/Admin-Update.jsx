@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
+import "./Admin-Update.css";
 
 export const AdminUpdate = () => {
   const [data, setData] = useState({
