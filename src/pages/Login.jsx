@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
+import  GoogleSignInButton  from "../component/GoogleSignInButton";
 
 
 export const Login = () => {
@@ -102,6 +103,9 @@ export const Login = () => {
                   </div>
                   <br />
                   <button type="submit">Submit</button>
+
+                  <GoogleSignInButton />
+
                 </form>
               </div>
             </div>

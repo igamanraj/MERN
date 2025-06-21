@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(false);
       } else {
         setIsLoading(false);
-        console.log("Error fetching user data");
+        // console.log("Error fetching user data");
       }
     } catch (error) {
       console.error(error);
