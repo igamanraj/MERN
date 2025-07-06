@@ -11,8 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
 
-
-  const API = import.meta.env.VITE_APP_URI_API
+  const API = import.meta.env.VITE_APP_URI_API;
 
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
@@ -20,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   let isLoggedIn = !!token;
-  // console.log("isLoggedIn", isLoggedIn);
+  
 
   // Logout User Funtionality
   const LogoutUser = () => {
@@ -37,15 +36,12 @@ export const AuthProvider = ({ children }) => {
   const userAuthentication = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${API}/user`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/user`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -64,12 +60,9 @@ export const AuthProvider = ({ children }) => {
   // to fetch the services data from the database
   const getServices = async () => {
     try {
-      const response = await fetch(
-        `${API}/Service`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${API}/Service`, {
+        method: "GET",
+      });
       if (response.ok) {
         const data = await response.json();
         // console.log(data.msg)
@@ -81,8 +74,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getServices();
-    userAuthentication();
+      setIsLoading(true);
+      getServices();
+      userAuthentication();
   }, []);
 
   return (
@@ -95,7 +89,7 @@ export const AuthProvider = ({ children }) => {
         services,
         authorizationToken,
         isLoading,
-        API
+        API,
       }}
     >
       {children}

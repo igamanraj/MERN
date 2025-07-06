@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useAuth } from "../store/Auth";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../store/Auth";
 import { toast } from "sonner";
 import "./Admin-Update.css";
 
@@ -11,6 +11,7 @@ export const AdminUpdate = () => {
     phone: "",
   });
 
+    const navigate = useNavigate();
   const params = useParams();
   console.log("params single users: ", params);
   const { authorizationToken , API} = useAuth();
@@ -68,6 +69,7 @@ export const AdminUpdate = () => {
       );
       if (response.ok) {
         toast.success("Updated Successfully");
+        navigate("/admin/users");
       } else {
         toast.error("Updation Failed");
       }

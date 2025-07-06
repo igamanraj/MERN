@@ -55,7 +55,6 @@ export const Contact = () => {
         body: JSON.stringify(contact),
       });
       console.log("contact", response);
-
       if (response.ok) {
         setContact(defaultContactForm);
         const data = await response.json()

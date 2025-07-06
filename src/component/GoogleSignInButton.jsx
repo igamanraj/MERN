@@ -3,6 +3,8 @@ import React from "react";
 import { auth, provider, signInWithPopup } from "../../firebase";
 import "../component/GoogleSignInButton.css"; // Assuming you have a CSS file for styles
 import { useAuth } from "../store/Auth"; // Adjust the import path as necessary
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner"; // Assuming you are using Sonner for notifications
 
 const GoogleSignInButton = ({ onSuccess, onError }) => {
   const [user, setUser] = useState({
@@ -10,48 +12,43 @@ const GoogleSignInButton = ({ onSuccess, onError }) => {
     password: "",
   });
 
-  const { API } = useAuth(); // Access the API URL from Auth context
+  const { storeTokenInLS,API } = useAuth(); // Access the API URL from Auth context
+  const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      // You can access user details here
+      const token = await user.getIdToken();
 
-      const userData = {
-        displayName: user.displayName || "No Name",
-        email: user.email || "No Email",
-        photoURL: user.photoURL || "No Photo URL",
-        uid: user.uid,
-      };
-      // Log user info to the console
-      console.log("User Info:", {
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-        uid: user.uid,
-      });
-
+      // Send the token to your backend for verification and to create a session
       const response = await fetch(`${API}/google-signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({ email: user.email, displayName: user.displayName, photoURL: user.photoURL, uid: user.uid, phone: user.phoneNumber }),
       });
 
+      const res_data = await response.json();
+      
       if (response.ok) {
-        const data = await response.json();
-        console.log("Server Response:", data);
+        toast.success(res_data.extraDetails ? res_data.extraDetails : res_data.message || "Login Successfully", { description: "You have successfully logged in to your account" });
+        onSuccess && onSuccess(res_data);
+        
+        storeTokenInLS(res_data.token); // Assuming you have a function to store the token
+         navigate("/");
+         console.log("User signed in successfully:", result);
       } else {
-        console.error("Error signing in with Google");
+        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message || "Login Failed");
+        onError && onError(res_data);
       }
-
-      if (onSuccess) onSuccess(user); // optional callback
     } catch (error) {
       console.error("Google Sign-In Error:", error);
-      if (onError) onError(error); // optional callback
-    }
+      toast.error("Google Sign-In Failed");
+      onError && onError(error);
+    } 
   };
 
   return (

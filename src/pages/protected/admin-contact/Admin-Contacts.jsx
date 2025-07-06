@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../store/Auth";
+import { useAuth } from "../../../store/Auth";
 import { toast } from "sonner";
 import "./Admin-Contact.css";
 

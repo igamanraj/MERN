@@ -10,9 +10,9 @@ import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
 import { Error } from "./pages/Error.jsx"
 import { AdminLayout } from "../src/component/layouts/Admin-Layout.jsx"
-import { AdminUsers } from "../src/pages/Admin-Users.jsx";
-import { AdminContacts } from "../src/pages/Admin-Contacts.jsx";
-import { AdminUpdate } from "../src/pages/Admin-Update.jsx";
+import { AdminUsers } from "../src/pages/protected/admin-user/Admin-Users.jsx";
+import { AdminContacts } from "../src/pages/protected/admin-contact/Admin-Contacts.jsx";
+import { AdminUpdate } from "./pages/protected/admin-update/Admin-Update.jsx";
 
 
 const App = () => {

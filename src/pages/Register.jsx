@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "sonner";
+import { images } from "../assets"; // Adjust the path as necessary
 
+const profilePicture = Object.values(images);
 
 export const Register = () => {
   const [user, setUser] = useState({
@@ -12,14 +14,16 @@ export const Register = () => {
     password: "",
   });
 
+  // Assign a random avatar
+  const randomAvatar = profilePicture[Math.floor(Math.random() * profilePicture.length)];
+
   const navigate = useNavigate();
 
   const { storeTokenInLS, API } = useAuth();
 
-
   // handling the input value
   const handleInput = (e) => {
-    console.log(e);
+    // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
@@ -34,39 +38,48 @@ export const Register = () => {
     e.preventDefault();
     console.log(user);
 
+    // Create a new object that includes the random avatar
+    const userData = {
+      ...user,
+      profilePicture: randomAvatar,
+    };
+
+    console.log("randomAvatar: ", randomAvatar);
+
     try {
       const response = await fetch(`${API}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(userData),
       });
 
-
-      const res_data = await response.json()
-        console.log("response from server", res_data.message)
-        // console.log(response);
-
-
-
+      const res_data = await response.json();
+      console.log("response from server", res_data.message);
+      // console.log(response);
 
       if (response.ok) {
-          // store token in localstorage
-          storeTokenInLS(res_data.token); 
-          setUser({
+        // store token in localstorage
+        storeTokenInLS(res_data.token);
+        setUser({
           username: "",
           email: "",
           phone: "",
           password: "",
+          profilePicture: randomAvatar, // Assign the random avatar
         });
-        toast.success("Registration Successfull",{ description : "You are successfyully registered"})
-        navigate("/")
-      }else{
-        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message)
+        toast.success("Registration Successfull", {
+          description: "You are successfyully registered",
+        });
+        navigate("/");
+      } else {
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (error) {
-      console.log("Register : ", error);
+      console.log("Register Error: ", error);
     }
   };
 

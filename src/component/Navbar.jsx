@@ -1,9 +1,16 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../store/Auth";
+import { images } from "../assets";
 
 export const Navbar = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
+  // console.log(user.profilePicture);
+
+  const avatarSrc = user?.profilePicture?.startsWith("http")
+  ? user.profilePicture // Google image URL
+  : images[user.profilePicture] || images["default.png"]; // Local import fallback
+
   return (
     <>
       <header>
@@ -26,9 +33,20 @@ export const Navbar = () => {
                 <NavLink to="/Contact">Contact</NavLink>{" "}
               </li>
               {isLoggedIn ? (
-                <li>
-                  <NavLink to="/Logout">Logout</NavLink>{" "}
-                </li>
+                <>
+                  <li>
+                    <NavLink to="/Logout">Logout</NavLink>{" "}
+                  </li>
+                  <li>
+                    <NavLink>
+                      <img
+                        src={avatarSrc}
+                        alt="User Image"
+                        style={{ width: "35px", height: "35px", border: "2px solid #646CFF", borderRadius: "50%" }}
+                      />
+                    </NavLink>
+                  </li>
+                </>
               ) : (
                 <>
                   <li>
