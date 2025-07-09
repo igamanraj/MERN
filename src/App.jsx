@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home.jsx";
-import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
-import { Services } from "./pages/Services";
-import { Register } from "./pages/Register";
-import { Login } from "./pages/Login";
-import { Logout } from "./pages/Logout.jsx";
+import { Home } from "./pages/Home/Home.jsx";
+import { About } from "./pages/About/About.jsx";
+import { Contact } from "./pages/Contact/Contact.jsx";
+import { Services } from "./pages/Services/Services";
+import { Register } from "./pages/Register/Register";
+import { Login } from "./pages/Login/Login";
+import { Logout } from "./pages/Logout/Logout.jsx";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
-import { Error } from "./pages/Error.jsx"
+import { Error } from "./pages/Error/Error.jsx"
 import { AdminLayout } from "../src/component/layouts/Admin-Layout.jsx"
 import { AdminUsers } from "../src/pages/protected/admin-user/Admin-Users.jsx";
 import { AdminContacts } from "../src/pages/protected/admin-contact/Admin-Contacts.jsx";

@@ -1,11 +1,505 @@
-.container{
-    max-width: 140rem;
-    padding: 4.2rem 4.2rem;
-    display: flex;
-    justify-content: space-between;
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-ul{
+/* Container Styles */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.6rem 2.4rem;
+}
+
+/* Header Styles */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #292929;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo Brand Styles */
+.logo-brand {
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+}
+
+.logo-brand a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.logo-brand a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.logo-brand a:hover::after {
+  width: 100%;
+}
+
+.logo-brand a:hover {
+  transform: translateY(-2px);
+}
+
+/* Navigation Styles */
+nav {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #738ca4;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Active NavLink Styles */
+nav ul li a.active {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  font-weight: 600;
+}
+
+nav ul li a.active::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transform: translateX(-50%);
+}
+
+/* Hover Effects */
+nav ul li a:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.08);
+  transform: translateY(-2px);
+}
+
+nav ul li a:hover::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transform: translateX(-50%);
+}
+
+/* Profile Picture Styles */
+nav ul li a img {
+  border: 2px solid #667eea !important;
+  border-radius: 50% !important;
+  width: 35px !important;
+  height: 35px !important;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+nav ul li a img:hover {
+  border-color: #764ba2 !important;
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.hamburger:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Hamburger Animation */
+.hamburger span.open:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger span.open:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger span.open:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Responsive Design */
+
+/* Large Desktop (1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1600px;
+    padding: 0.8rem 3rem;
+  }
+
+  .logo-brand a {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    gap: 2.5rem;
+  }
+
+  nav ul li a {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Desktop (992px to 1199px) */
+@media (max-width: 1199px) {
+  .container {
+    padding: 0.6rem 2rem;
+  }
+
+  nav ul {
+    gap: 1.8rem;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet (768px to 991px) */
+@media (max-width: 991px) {
+  .container {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .logo-brand a {
+    font-size: 1.7rem;
+  }
+
+  nav ul {
+    gap: 1.5rem;
+  }
+
+  nav ul li a {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Mobile Large (576px to 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 0.5rem 1.2rem;
+  }
+
+  .hamburger {
     display: flex;
-    gap: 3.2rem;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    max-height: 500px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    background: rgba(102, 126, 234, 0.05);
+    font-size: 1.1rem;
+  }
+
+  nav ul li a:hover {
+    background: rgba(102, 126, 234, 0.15);
+    transform: translateY(0);
+  }
+
+  nav ul li a.active {
+    background: rgba(102, 126, 234, 0.2);
+  }
+
+  nav ul li a img {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .logo-brand a {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile Small (575px and below) */
+@media (max-width: 575px) {
+  .container {
+    padding: 0.8rem 1rem;
+  }
+
+  .logo-brand a {
+    font-size: 1.6rem;
+  }
+
+  .hamburger span {
+    width: 22px;
+    height: 2.5px;
+  }
+
+  nav ul {
+    padding: 1rem;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  nav ul li a img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+/* Extra Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .logo-brand a {
+    font-size: 1.4rem;
+  }
+
+  .hamburger {
+    padding: 0.3rem;
+  }
+
+  .hamburger span {
+    width: 20px;
+    height: 2px;
+  }
+
+  nav ul {
+    padding: 0.8rem;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+}
+
+/* Landscape Mobile (height less than 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .container {
+    padding: 0.5rem 1rem;
+  }
+
+  header {
+    position: relative;
+  }
+
+  nav.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    max-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  nav ul li {
+    width: auto;
+  }
+
+  nav ul li a {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo-brand a {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  nav ul li a {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Print Styles */
+@media print {
+  header {
+    position: static;
+    box-shadow: none;
+    border-bottom: 1px solid #000;
+    background: white;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  nav {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+  }
+
+  nav ul {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  nav ul li a {
+    color: #000;
+    background: none;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus Styles for Keyboard Navigation */
+.logo-brand a:focus,
+nav ul li a:focus,
+.hamburger:focus {
+  /* outline: 2px solid #667eea; */
+  outline-offset: 2px;
+}
+
+/* Hover Effects for Touch Devices */
+@media (hover: hover) {
+  nav ul li a:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  nav ul li a:hover {
+    transform: none;
+  }
+  
+  nav ul li a:active {
+    background: rgba(102, 126, 234, 0.2);
+  }
 }

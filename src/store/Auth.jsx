@@ -15,7 +15,10 @@ export const AuthProvider = ({ children }) => {
 
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
-    return localStorage.setItem("token", serverToken);
+    localStorage.setItem("token", serverToken);
+    // Immediately fetch user data after storing token with the new token
+    userAuthentication(serverToken);
+    return serverToken;
   };
 
   let isLoggedIn = !!token;
@@ -33,27 +36,29 @@ export const AuthProvider = ({ children }) => {
 
   // JWT Authentication - to get currently logged in user data
 
-  const userAuthentication = async () => {
+  const userAuthentication = async (tokenToUse = null) => {
     setIsLoading(true);
+    const currentToken = tokenToUse || token;
+    const currentAuthToken = `Bearer ${currentToken}`;
+    
     try {
       const response = await fetch(`${API}/user`, {
         method: "GET",
         headers: {
-          Authorization: authorizationToken,
+          Authorization: currentAuthToken,
         },
       });
 
+      const data = await response.json();
       if (response.ok) {
-        const data = await response.json();
-        // console.log("User data",data.userData)
         setUser(data.userData);
         setIsLoading(false);
       } else {
         setIsLoading(false);
-        // console.log("Error fetching user data");
       }
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
   };
 

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../store/Auth";
+import { useAuth } from "../../store/Auth";
 import { toast } from "sonner";
-import { images } from "../assets"; // Adjust the path as necessary
+import { images } from "../../assets"; // Adjust the path as necessary
+import "./Register.css";
 
 const profilePicture = Object.values(images);
 

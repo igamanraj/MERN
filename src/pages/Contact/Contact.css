@@ -1,0 +1,565 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container and Grid Styles */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Main Contact Section */
+.section-contact {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+.section-contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.05"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0.02"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center;
+  background-size: cover;
+  pointer-events: none;
+}
+
+
+/* Form Section Styles - Increased width, decreased height */
+.section-form {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 1rem 5rem; /* Reduced vertical padding more, increased horizontal padding */
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1600px; /* Increased from 1400px to 1600px */
+}
+
+.section-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+/* Form Styles - Reduced gaps for more compact vertical layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem; /* Reduced from 1rem to 0.7rem */
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem; /* Reduced gap between label and input from 0.3rem to 0.2rem */
+}
+
+/* Label Styles */
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-left: 1rem;
+}
+
+label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+}
+
+/* Input and Textarea Styles - Made more compact vertically */
+input,
+textarea {
+  padding: 0.6rem 1.2rem; /* Reduced vertical padding */
+  font-size: 1rem;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #667eea;
+  /* background: rgba(255, 255, 255, 0.95); */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  /* color: #2c3e50; */
+  transform: translateY(-2px);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+  
+} 
+/* Textarea Specific Styles - Reduced height further */
+textarea {
+  min-height: 50px; /* Reduced from 60px to 50px */
+  line-height: 1.5;
+  font-family: inherit;
+}
+
+/* Submit Button Styles - More compact vertically */
+button[type="submit"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.6rem 2rem; /* Reduced vertical padding */
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-top: -25px;
+}
+
+button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+button[type="submit"]:hover::before {
+  left: 100%;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+}
+
+button[type="submit"]:active {
+  transform: translateY(-1px);
+}
+
+/* Map Section Styles */
+.mb-3 {
+  margin: 3rem 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  filter: grayscale(0.3);
+  transition: filter 0.3s ease;
+}
+
+iframe:hover {
+  filter: grayscale(0);
+}
+
+/* Responsive Design */
+
+/* Large Desktop (1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1800px; /* Increased from 1600px to 1800px */
+    padding: 0 3rem;
+  }
+
+  .section-contact {
+    padding: 4rem 0;
+  }
+
+  .section-form {
+    padding: 1.5rem 6rem; /* Increased horizontal padding */
+    max-width: 1800px; /* Increased from 1600px to 1800px */
+  }
+
+  form {
+    gap: 1.2rem; /* Reduced from 1.5rem */
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+
+  input,
+  textarea {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  button[type="submit"] {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  iframe {
+    height: 500px;
+  }
+}
+
+/* Desktop (992px to 1199px) */
+@media (max-width: 1199px) {
+  .section-contact {
+    padding: 3rem 0;
+  }
+
+  .section-form {
+    padding: 2rem 2.5rem;
+  }
+}
+
+/* Tablet (768px to 991px) */
+@media (max-width: 991px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .section-contact {
+    padding: 2rem 0;
+  }
+
+  .section-form {
+    padding: 1.5rem 2rem;
+    max-width: 100%;
+  }
+
+  form {
+    gap: 1rem;
+  }
+
+  iframe {
+    height: 400px;
+  }
+}
+
+/* Mobile Large (576px to 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section-contact {
+    padding: 1.5rem 0;
+  }
+
+  
+  .section-form {
+    padding: 1.2rem 1.5rem;
+    border-radius: 15px;
+  }
+
+  form {
+    gap: 0.8rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  textarea {
+    min-height: 70px;
+  }
+
+  button[type="submit"] {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  iframe {
+    height: 350px;
+  }
+
+  .mb-3 {
+    margin: 2rem 0;
+    border-radius: 15px;
+  }
+}
+
+/* Mobile Small (575px and below) */
+@media (max-width: 575px) {
+  .container {
+    padding: 0 0.8rem;
+  }
+
+  .section-contact {
+    padding: 1rem 0;
+  }
+
+  .section-form {
+    padding: 1rem 1.2rem;
+  }
+
+  form {
+    gap: 0.7rem;
+  }
+
+  label {
+    font-size: 0.85rem;
+    padding-left: 0.8rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  button[type="submit"] {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  iframe {
+    height: 300px;
+  }
+}
+
+/* Extra Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .section-contact {
+    padding: 0.8rem 0;
+  }
+
+  .section-form {
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+  }
+
+  form {
+    gap: 0.6rem;
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  textarea {
+    min-height: 60px;
+  }
+
+  button[type="submit"] {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  iframe {
+    height: 250px;
+  }
+
+  .mb-3 {
+    margin: 1.5rem 0;
+    border-radius: 10px;
+  }
+}
+
+/* Landscape Mobile (height less than 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .section-contact {
+    padding: 0.5rem 0;
+  }
+
+  .section-form {
+    padding: 0.8rem 1rem;
+  }
+
+  form {
+    gap: 0.4rem;
+  }
+
+  textarea {
+    min-height: 50px;
+  }
+
+  iframe {
+    height: 200px;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .section-form {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .section-contact {
+    background: white;
+    padding: 2rem 0;
+  }
+
+  .section-form {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  button[type="submit"] {
+    display: none;
+  }
+
+  iframe {
+    display: none;
+  }
+
+  .mb-3::after {
+    content: "Map available online";
+    display: block;
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus Styles for Keyboard Navigation */
+input:focus,
+textarea:focus,
+button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .section-contact {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .section-form {
+    background: rgba(30, 30, 50, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  label {
+    color: #e2e8f0;
+  }
+
+  input,
+  textarea {
+    background: rgba(30, 30, 50, 0.8);
+    border-color: rgba(102, 126, 234, 0.3);
+    color: #e2e8f0;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #64748b;
+  }
+
+  iframe {
+    filter: invert(0.9) hue-rotate(180deg);
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  button[type="submit"]:hover {
+    transform: none;
+  }
+  
+  button[type="submit"]:active {
+    transform: scale(0.98);
+  }
+
+  .contact-image img:hover {
+    transform: none;
+  }
+}
+
+/* Loading State for Form */
+.section-form.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.section-form.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 3px solid #667eea;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

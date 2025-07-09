@@ -1,0 +1,36 @@
+/* Registration Section */
+.section-registration {
+  padding: 0 3.2rem;
+}
+
+.section-registration .container {
+  padding-top: 3.2rem;
+  align-items: center;
+}
+
+.section-registration .container img {
+  width: 80%;
+  height: auto;
+}
+
+.section-registration .registration-form label {
+  display: block;
+  margin: 2.4rem 0 0.8rem 0;
+  text-transform: capitalize;
+}
+
+.section-registration .registration-form input {
+  width: 80%;
+  padding: 0.6rem;
+}
+
+.section-registration .registration-form button {
+  margin-top: 3.2rem;
+}
+
+/* Admin Layout */
+.adminNav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

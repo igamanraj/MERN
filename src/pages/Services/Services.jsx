@@ -1,4 +1,4 @@
-import { useAuth } from "../store/Auth";
+import { useAuth } from "../../store/Auth";
 
 export const Services = () => {
   const { services,} = useAuth();
@@ -18,7 +18,7 @@ export const Services = () => {
             <div className="card" key={index}>
               <div className="card-img">
                 <img
-                  src="/images/design.png"
+                  src="https://www.nexel.in/media/blog_images/web_development_Z62jy4k.jpg"
                   alt="our services info"
                   width={250}
                 />

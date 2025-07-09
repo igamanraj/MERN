@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { auth, provider, signInWithPopup } from "../../firebase";
-import "../component/GoogleSignInButton.css"; // Assuming you have a CSS file for styles
 import { useAuth } from "../store/Auth"; // Adjust the import path as necessary
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner"; // Assuming you are using Sonner for notifications

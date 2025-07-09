@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../store/Auth";
+import { useAuth } from "../../store/Auth";
 
 export const Logout = () => {
   const { LogoutUser } = useAuth();

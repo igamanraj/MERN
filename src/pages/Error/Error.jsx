@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./Error.css"; // Assuming you have a CSS file for styling 
 export const Error = () => {
   return (
     <>

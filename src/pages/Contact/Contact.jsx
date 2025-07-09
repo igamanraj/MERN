@@ -1,26 +1,27 @@
 import { useState } from "react";
-import { useAuth } from "../store/Auth";
+import { useAuth } from "../../store/Auth";
 import { toast } from "sonner";
+import "./Contact.css";
 
 const defaultContactForm = {
-  username : "",
-  email : "",
-  message : "",
-}
+  username: "",
+  email: "",
+  message: "",
+};
 
 export const Contact = () => {
-  const [contact, setContact] = useState(defaultContactForm );
+  const [contact, setContact] = useState(defaultContactForm);
 
-  const [userData, setUserData] = useState(true)
+  const [userData, setUserData] = useState(true);
 
   const { user, API } = useAuth();
 
-  if(userData && user){
+  if (userData && user) {
     setContact({
-      username : user.username,
-      email : user.email,
-      message : "",
-    })
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
     setUserData(false);
   }
 
@@ -29,11 +30,6 @@ export const Contact = () => {
   const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-
-    // setContact({
-    //   ...contact,
-    //   [name]: value,
-    // });
 
     setContact((prev) => ({
       ...prev,
@@ -57,12 +53,12 @@ export const Contact = () => {
       console.log("contact", response);
       if (response.ok) {
         setContact(defaultContactForm);
-        const data = await response.json()
+        const data = await response.json();
         console.log(data);
-        toast.success("Message sent successfully")
+        toast.success("Message sent successfully");
       }
     } catch (error) {
-      alert("Message not send")
+      alert("Message not send");
       console.log(error);
     }
   };
@@ -71,18 +67,7 @@ export const Contact = () => {
     <>
       <main>
         <section className="section-contact">
-          <div className="contact-content container">
-            <h1 className="main-heading">Contact Us</h1>
-          </div>
-          <div className="container grid grid-two-cols">
-            <div className="contact-image">
-              <img
-                src="./images/support.png"
-                alt="Contact form"
-                width={500}
-                height={500}
-              />
-            </div>
+          <div className="container">
             <div>
               <section className="section-form">
                 <form onSubmit={handleSubmit}>

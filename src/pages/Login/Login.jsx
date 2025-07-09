@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../store/Auth";
+import { useAuth } from "../../store/Auth";
 import { toast } from "sonner";
-import  GoogleSignInButton  from "../component/GoogleSignInButton";
+import "./Login.css"; 
+import  GoogleSignInButton  from "../../component/GoogleSignInButton";
 
 
 export const Login = () => {
@@ -72,8 +73,7 @@ export const Login = () => {
               </div>
               {/* Login Form  */}
               <div className="login-form">
-                <h1>Login Form</h1>
-                <br />
+                
                 <form onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="">Email</label>
@@ -102,7 +102,7 @@ export const Login = () => {
                     />
                   </div>
                   <br />
-                  <button type="submit">Submit</button>
+                  <button type="submit" className="btn">Submit</button>
 
                   <GoogleSignInButton />
 
