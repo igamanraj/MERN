@@ -293,12 +293,33 @@ body {
     text-align: center;
   }
   
+  /* Reorder elements: image first, then content */
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-visual {
+    order: 1;
+  }
+  
+  .hero-text {
+    order: 2;
+  }
+  
   .hero-title {
     font-size: 2.5rem;
   }
   
   .hero-description {
     font-size: 1.1rem;
+  }
+  
+  /* Hero image maintains good size on mobile */
+  .hero-image {
+    max-width: 400px;
+    min-width: 300px;
+    width: 80%;
   }
   
   .stats-grid {
@@ -318,6 +339,27 @@ body {
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
+  }
+  
+  /* Reorder elements: image first, then content */
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about-visual {
+    order: 1;
+  }
+  
+  .about-content {
+    order: 2;
+  }
+  
+  /* About image maintains good size on mobile */
+  .about-image {
+    max-width: 400px;
+    min-width: 300px;
+    width: 80%;
   }
   
   .about-title {
@@ -342,6 +384,24 @@ body {
   
   .hero-section {
     padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Use flexbox for better control */
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .hero-visual {
+    order: 1;
+  }
+  
+  .hero-text {
+    order: 2;
   }
   
   .hero-title {
@@ -354,6 +414,13 @@ body {
   
   .hero-description {
     font-size: 1rem;
+  }
+  
+  /* Hero image stays prominent on small mobile */
+  .hero-image {
+    max-width: 350px;
+    min-width: 280px;
+    width: 90%;
   }
   
   .stats-section {
@@ -379,6 +446,28 @@ body {
   
   .about-section {
     padding: 40px 0;
+  }
+  
+  /* Use flexbox for better control */
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .about-visual {
+    order: 1;
+  }
+  
+  .about-content {
+    order: 2;
+  }
+  
+  /* About image stays prominent on small mobile */
+  .about-image {
+    max-width: 350px;
+    min-width: 280px;
+    width: 90%;
   }
   
   .about-title {
@@ -418,6 +507,19 @@ body {
   
   .about-title {
     font-size: 1.5rem;
+  }
+  
+  /* Images still maintain decent size on very small screens */
+  .hero-image {
+    max-width: 300px;
+    min-width: 250px;
+    width: 95%;
+  }
+  
+  .about-image {
+    max-width: 300px;
+    min-width: 250px;
+    width: 95%;
   }
   
   .hero-actions a,

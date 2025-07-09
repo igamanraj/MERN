@@ -1,21 +1,22 @@
 import { useAuth } from "../../store/Auth";
+import "./Services.css";
 
 export const Services = () => {
   const { services,} = useAuth();
 
   return (
     <>
-      <section className="section-services">
+      <section className="services-section">
         <div className="container">
-          <h1 className="main-heading">Services</h1>
+          <h1 className="services-title">Services</h1>
         </div>
-        <div className="grid grid-three-cols">
+        <div className="services-grid">
           {services.map((curElem, index) => {
 
             const {price, description, provider, service} = curElem;
             return(
 
-            <div className="card" key={index}>
+            <div className="service-card" key={index}>
               <div className="card-img">
                 <img
                   src="https://www.nexel.in/media/blog_images/web_development_Z62jy4k.jpg"
@@ -24,7 +25,7 @@ export const Services = () => {
                 />
               </div>
 
-              <div className="card-deatils">
+              <div className="service-info">
                 <div className="grid grid-two-cols">
                   <p>{provider}</p>
                   <p>{price}</p>

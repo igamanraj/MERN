@@ -73,7 +73,7 @@ export const Login = () => {
               </div>
               {/* Login Form  */}
               <div className="login-form">
-                
+                <h2>Login Now</h2>
                 <form onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="">Email</label>

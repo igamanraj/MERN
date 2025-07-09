@@ -61,6 +61,22 @@
   background: linear-gradient(90deg, #667eea, #764ba2);
 }
 
+.section-form h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1.5rem; /* Reduced from 2rem to 1.5rem */
+  text-align: center;
+}
+.section-form h2::after {
+  content: '';
+  display: block;
+  width: 57%;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  margin: 0 auto;
+  margin-top: 0.5rem; /* Reduced from 1rem to 0.5rem */
+}
 /* Form Styles - Reduced gaps for more compact vertical layout */
 form {
   display: flex;
@@ -73,6 +89,8 @@ form div {
   flex-direction: column;
   gap: 0.2rem; /* Reduced gap between label and input from 0.3rem to 0.2rem */
 }
+
+
 
 /* Label Styles */
 label {
@@ -138,7 +156,7 @@ textarea {
 button[type="submit"] {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 0.6rem 2rem; /* Reduced vertical padding */
+  padding: 0.5rem 2rem; /* Reduced vertical padding */
   font-size: 1.1rem;
   font-weight: 600;
   border: none;
@@ -150,7 +168,7 @@ button[type="submit"] {
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
   position: relative;
   overflow: hidden;
-  margin-top: -25px;
+  margin-top: -35px;
 }
 
 button[type="submit"]::before {

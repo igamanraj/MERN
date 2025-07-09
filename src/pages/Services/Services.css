@@ -1,0 +1,144 @@
+/* === Base Section === */
+.services-section {
+  padding: 2rem 1rem;
+  background-color: #f9fafb;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.15"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0.02"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>')
+    no-repeat center;
+}
+
+.services-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #55575a;
+  font-weight: normal;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 1%;
+    bottom: 0;
+    width: 98%;
+    height: 3px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    border-radius: 2px;
+  }
+}
+
+/* === Grid Layout === */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === Individual Card === */
+.service-card {
+  background-color: #ffffff1e;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* === Image Styling === */
+.card-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* === Content Styling === */
+.service-info {
+  padding: 1.5rem;
+}
+
+.service-info .grid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.service-info h1 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.service-info p {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* === Responsive Media Queries === */
+@media (max-width: 768px) {
+  .services-title {
+    font-size: 2rem;
+  }
+
+  .service-info h1 {
+    font-size: 1.1rem;
+  }
+
+  .service-info p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-title {
+    font-size: 1.7rem;
+  }
+
+  .service-info {
+    padding: 1rem;
+  }
+
+  .service-info .grid {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .service-info h1 {
+    font-size: 1rem;
+  }
+
+  .service-info p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+  .services-title {
+    color: #ffffff;
+  }
+
+  .service-info .grid {
+    color: #ffffff;
+  }
+
+  .service-info h1 {
+    color: #ffffff;
+  }
+
+  .service-info p {
+    color: #ffffff;
+  }
+}

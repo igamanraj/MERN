@@ -4,6 +4,7 @@ import { useAuth } from "../../store/Auth";
 import { toast } from "sonner";
 import { images } from "../../assets"; // Adjust the path as necessary
 import "./Register.css";
+import  GoogleSignInButton  from "../../component/GoogleSignInButton";
 
 const profilePicture = Object.values(images);
 
@@ -89,18 +90,11 @@ export const Register = () => {
       <section>
         <main>
           <div className="section-registration">
-            <div className="container grid grid-two-cols">
-              <div className="registration-image">
-                <img
-                  src="/images/register.png"
-                  alt="Registration"
-                  width="500"
-                  height="500"
-                />
-              </div>
+            <div className="container">
+             
               {/* Registration form  */}
               <div className="registration-form">
-                <h1>Registration Form</h1>
+              <h2>Register Yourself Here</h2>
                 <br />
                 <form onSubmit={handleSubmit}>
                   <div>
@@ -108,7 +102,7 @@ export const Register = () => {
                     <input
                       type="text"
                       name="username"
-                      placeholder="Enter your name"
+                      placeholder="Enter your username"
                       id="username"
                       required
                       autoComplete="off"
@@ -160,6 +154,7 @@ export const Register = () => {
                     Register Now
                   </button>
                 </form>
+                <GoogleSignInButton />
               </div>
             </div>
           </div>

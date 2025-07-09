@@ -68,8 +68,11 @@ export const Contact = () => {
       <main>
         <section className="section-contact">
           <div className="container">
+            
             <div>
+              
               <section className="section-form">
+                 <h2>Get in touch</h2>
                 <form onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="username">username</label>
