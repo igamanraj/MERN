@@ -54,7 +54,7 @@ const GoogleSignInButton = ({ onSuccess, onError }) => {
       <img
         src="https://img.icons8.com/color/16/000000/google-logo.png"
         alt="Google"
-        style={{ marginRight: "8px" }}
+        className="google-icon"
       />
       <p>Continue with Google</p>
     </button>

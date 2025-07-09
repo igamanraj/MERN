@@ -1,4 +1,4 @@
-/* Reset and layout base */
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -6,77 +6,440 @@
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #111;
-  color: #fff;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+  line-height: 1.6;
 }
 
-/* Flex layout for sidebar + content */
-.admin-layout {
+/* Loading container */
+.loading-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
+  gap: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Admin Layout Root - Completely separate from main site */
+.admin-layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: #f8fafc;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 /* Sidebar styles */
 .sidebar {
-  width: 220px;
-  background-color: #000;
-  padding: 2rem 1rem;
+  width: 280px;
+  background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
   display: flex;
-  flex-direction: column;  /* 🔥 Key to vertical layout */
-  /* align-items: flex-start; */
-  gap: 1.5rem;
-}
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;  /* 🔥 This makes the nav items vertical */
-  gap: 1rem;    
-  padding-top: 2rem;           /* Optional spacing between items */
+  flex-direction: column;
+  height: 100vh;
+  z-index: 10000;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
 }
 
-
-.sidebar nav ul li {
-  margin-bottom: 1rem;
-  
-}
-
-.sidebar nav ul li a {
+.sidebar-header {
+  padding: 2rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 0.8rem 1rem;
-  background-color: transparent;
-  color: #fff;
-  text-decoration: none;
-  /* border: 1px solid #888; */
-  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   transition: all 0.3s ease;
-  
-}
-nav h2 {
-    font-size: 2rem;
-    text-align: center;
-    background-color: #DDDDDD;
-    color: #000;
 }
 
-
-.sidebar nav ul li a:hover,
-.sidebar nav ul li a.active {
-  background-color: #1a1a1a;
-  color: #98b6b9;
-  border-color: #00bcd4;
+.sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
+/* Sidebar navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
 
+.sidebar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
+.sidebar-nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
 
-/* Content area */
+.sidebar-nav ul li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.sidebar-nav ul li a:hover::before {
+  left: 100%;
+}
+
+.sidebar-nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.sidebar-nav ul li a.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.sidebar-nav ul li a.active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.sidebar-nav ul li a svg {
+  font-size: 1.1rem;
+  min-width: 20px;
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.admin-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.admin-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.admin-role {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Main content area */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.admin-header {
+  background: #1F2B3D;
+  padding: 1.5rem 2rem;
+  /* border-bottom: 1px solid #e2e8f0; */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.admin-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .admin-content {
   flex: 1;
   padding: 2rem;
-  background-color: #1a1a1a;
+  background: #1F2B3D;
   overflow-y: auto;
 }
+.admin-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1818;
+  margin-bottom: 0.5rem;
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+  display: none;
+}
+
+/* Responsive Design */
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .admin-header {
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .admin-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    transform: translateX(-100%);
+    width: 280px;
+    z-index: 10001;
+  }
+  
+  .sidebar-open {
+    transform: translateX(0);
+  }
+  
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+  }
+  
+  .sidebar-close {
+    display: block;
+  }
+  
+  .admin-main {
+    width: 100%;
+  }
+  
+  .sidebar-toggle {
+    display: block;
+  }
+  
+  .admin-header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .admin-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .admin-content {
+    padding: 1rem;
+  }
+  
+  .sidebar-nav ul li a {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .admin-info {
+    padding: 0.8rem;
+  }
+  
+  .admin-avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+  }
+  
+  .admin-header {
+    padding: 1rem;
+  }
+  
+  .admin-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .admin-content {
+    padding: 0.8rem;
+  }
+  
+  .sidebar-header {
+    padding: 1.5rem 1rem 1rem;
+  }
+  
+  .sidebar-nav {
+    padding: 1rem 0.8rem;
+  }
+  
+  .sidebar-footer {
+    padding: 1rem;
+  }
+}
+
+/* Smooth scrollbar for sidebar */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Animation for page transitions */
+.admin-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus styles for accessibility */
+.sidebar-nav ul li a:focus,
+.sidebar-toggle:focus,
+.sidebar-close:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Hover effects for better UX */
+.sidebar-nav ul li a:hover svg {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* Active state animations */
+.sidebar-nav ul li a.active {
+  animation: activeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes activeGlow {
+  from {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  to {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+}
+

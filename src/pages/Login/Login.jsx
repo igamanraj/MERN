@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/Auth";
 import { toast } from "sonner";
@@ -13,7 +13,11 @@ export const Login = () => {
   });
 
   const navigate = useNavigate();
-  const { storeTokenInLS , API} = useAuth();
+  const { storeTokenInLS , API, isLoggedIn } = useAuth();
+
+  
+
+  
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -57,6 +61,7 @@ export const Login = () => {
     }
   };
 
+ 
   return (
     <>
       <section>
@@ -74,7 +79,7 @@ export const Login = () => {
               {/* Login Form  */}
               <div className="login-form">
                 <h2>Login Now</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} autoComplete="on">
                   <div>
                     <label htmlFor="">Email</label>
                     <input
@@ -83,7 +88,7 @@ export const Login = () => {
                       placeholder="Enter your email"
                       id="email"
                       required
-                      autoComplete="off"
+                      autoComplete="on"
                       value={user.email}
                       onChange={handleInput}
                     />
@@ -96,7 +101,7 @@ export const Login = () => {
                       placeholder="Enter your password"
                       id="password"
                       required
-                      autoComplete="off"
+                      autoComplete="on"
                       value={user.password}
                       onChange={handleInput}
                     />
