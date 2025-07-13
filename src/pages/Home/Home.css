@@ -1,4 +1,5 @@
-/* Reset and Base Styles */
+.home-page-container{
+    /* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -618,4 +619,5 @@ body {
   .about-title {
     color: #e2e8f0;
   }
+}
 }

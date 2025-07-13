@@ -87,7 +87,7 @@ export const AdminUsers = () => {
 
   return (
     <>
-      <section className="admin-users-section">
+      <section className="admin-users-section admin-users-page-container">
         <div className="container">
           <h1>Admin-User Data</h1>
         </div>

@@ -42,7 +42,8 @@ export const AdminLayout = () => {
       {/* Mobile Overlay */}
       {sidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar}></div>}
       
-      <div className="admin-layout">
+      <div className="admin-layout-container">
+        <div className="admin-layout">
         {/* Sidebar */}
         <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
           <div className="sidebar-header">
@@ -54,6 +55,12 @@ export const AdminLayout = () => {
           
           <nav className="sidebar-nav">
             <ul>
+              <li>
+                <NavLink to="/" onClick={closeSidebar}>
+                  <FaHome />
+                  <span>Home</span>
+                </NavLink>
+              </li>
               <li>
                 <NavLink to="/admin/users" onClick={closeSidebar}>
                   <FaUser />
@@ -72,12 +79,6 @@ export const AdminLayout = () => {
                   <span>Services</span>
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/" onClick={closeSidebar}>
-                  <FaHome />
-                  <span>Home</span>
-                </NavLink>
-              </li>
             </ul>
           </nav>
           
@@ -87,7 +88,7 @@ export const AdminLayout = () => {
                 {user?.name?.charAt(0).toUpperCase()}
               </div>
               <div className="admin-details">
-                <span className="admin-name">{user?.name}</span>
+                <span className="admin-name">{user? user.username : "Admin"}</span>
                 <span className="admin-role">Administrator</span>
               </div>
             </div>
@@ -111,6 +112,7 @@ export const AdminLayout = () => {
             <Outlet />
           </div>
         </main>
+      </div>
       </div>
     </>
   );

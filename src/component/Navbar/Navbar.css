@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+/* Ensure dark background for body and html */
+html, body {
+  background-color: #0f172a;
+  min-height: 100vh;
+}
+
 /* Container Styles */
 .container {
   max-width: 1400px;
@@ -264,9 +270,9 @@ nav ul li a img:hover {
     top: 100%; 
     left: 0;
     right: 0;
-    background: #ffffff;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+    background: #1e293b;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
@@ -299,8 +305,9 @@ nav ul li a img:hover {
     text-align: center;
     border-radius: 8px;
     margin-bottom: 0.5rem;
-    background: rgba(102, 126, 234, 0.05);
+    background: rgba(102, 126, 234, 0.1);
     font-size: 1.1rem;
+    color: #e2e8f0;
   }
 
   nav ul li a:hover {
@@ -398,7 +405,7 @@ nav ul li a img:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #ffffff;
+    background: #1e293b;
     max-height: 100vh;
     overflow-y: auto;
     display: flex;

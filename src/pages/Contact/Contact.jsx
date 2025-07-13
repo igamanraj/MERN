@@ -65,7 +65,7 @@ export const Contact = () => {
 
   return (
     <>
-      <main>
+      <main className="contact-page-container">
         <section className="section-contact">
           <div className="container">
             

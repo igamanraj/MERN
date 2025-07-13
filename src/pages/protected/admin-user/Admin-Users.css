@@ -1,4 +1,5 @@
-.admin-users-section {
+.admin-users-page-container{
+  .admin-users-section {
   padding: 1.5rem;
   background-color: #111;
   min-height: 50vh;
@@ -130,4 +131,5 @@
 .admin-contacts .delete-btn{
   background-color: #6d74ff;
   color: white;
+}
 }

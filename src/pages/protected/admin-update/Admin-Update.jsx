@@ -79,7 +79,7 @@ export const AdminUpdate = () => {
   };
 
   return (
-    <section className="section-contact">
+    <section className="section-contact admin-update-page-container">
       <div className="contact-content container">
         <h1 className="main-heading">Update user data</h1>
       </div>

@@ -70,7 +70,7 @@ export const AdminContacts = () => {
 
   return (
     <>
-      <section className="admin-contacts-section">
+      <section className="admin-contacts-section admin-contacts-page-container">
         <h1>Admin Contact Data</h1>
 
         <div className="container admin-contacts">

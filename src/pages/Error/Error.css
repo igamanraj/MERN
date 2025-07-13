@@ -1,20 +1,28 @@
-/* Error Page */
+.error-page-container{
+  /* Error Page */
 .error-page {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: #17203B;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
 }
 
 .error-page .content {
   max-width: 70rem;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .content h2.header {
   font-size: 18vw;
   line-height: 1em;
+  margin: 0 0 1rem 0;
   animation: animate 10s ease-in-out infinite;
-background: -webkit-repeating-linear-gradient(
+  background: -webkit-repeating-linear-gradient(
     -60deg,
     #71b7e6,
     #2ecc71,
@@ -23,7 +31,7 @@ background: -webkit-repeating-linear-gradient(
     #f39c12,
     #2ecc71,
     #3498db
-);
+  );
   background-size: 500%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -49,31 +57,174 @@ background: -webkit-repeating-linear-gradient(
 }
 
 .content h4 {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
   font-size: 2rem;
+  color: white;
+  font-weight: 600;
+}
+
+.content p {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content .btns {
   margin: 25px 0;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .content .btns a {
   display: inline-block;
-  margin: 0 10px;
   text-decoration: none;
-  border: 2px solid var(--btn-color);
-  color: var(--btn-color);
+  border: 2px solid var(--btn-color, #3498db);
+  color: var(--btn-color, #3498db);
   font-weight: 500;
-  padding: 10px 25px;
+  padding: 12px 30px;
   border-radius: 25px;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .content .btns a:hover {
-  background: var(--btn-color);
+  background: var(--btn-color, #3498db);
   color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+
+/* Large screens (desktops) */
+@media screen and (min-width: 1200px) {
+  .content h2.header {
+    font-size: 12rem;
+  }
+  
+  .content h4 {
+    font-size: 2.5rem;
+  }
+  
+  .content p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 768px) {
+  .error-page {
+    padding: 1.5rem 1rem;
+  }
+  
+  .content h2.header {
+    font-size: 20vw;
+  }
+  
+  .content h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content .btns {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .content .btns a {
+    width: 100%;
+    max-width: 250px;
+    padding: 14px 20px;
+  }
+}
+
+/* Small screens (mobile phones) */
+@media screen and (max-width: 480px) {
+  .error-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .content h2.header {
+    font-size: 25vw;
+    margin-bottom: 0.5rem;
+  }
+  
+  .content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .content p {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+    padding: 0 0.5rem;
+  }
+  
+  .content .btns a {
+    font-size: 0.8rem;
+    padding: 12px 16px;
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 320px) {
+  .content h2.header {
+    font-size: 28vw;
+  }
+  
+  .content h4 {
+    font-size: 1.1rem;
+  }
+  
+  .content p {
+    font-size: 0.85rem;
+  }
+  
+  .content .btns a {
+    font-size: 0.75rem;
+    padding: 10px 14px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .error-page {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  
+  .content h2.header {
+    font-size: 15vw;
+    margin-bottom: 0.5rem;
+  }
+  
+  .content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content .btns {
+    margin: 15px 0;
+    flex-direction: row;
+  }
+}
 }

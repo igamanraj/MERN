@@ -7,7 +7,7 @@ export const About = () => {
 
   return (
     <>
-      <main>
+      <main className="about-page-container">
         <section className="hero-banner">
             <div className="wrapper layout-grid">
                 <div className="content-block">

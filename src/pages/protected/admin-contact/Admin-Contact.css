@@ -1,9 +1,10 @@
-.admin-contacts-section {
+.admin-contacts-page-container{
+  .admin-contacts-section {
   padding: 3rem 2rem;
   background-color: #181818;
   color: #ffffff;
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
+  /* font-family: 'Segoe UI', sans-serif; */
 }
 
 .admin-contacts-section h1 {
@@ -131,4 +132,6 @@
 .btn-cancel {
   background-color: #6b7280;
   color: white;
+}
+
 }

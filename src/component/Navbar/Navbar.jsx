@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { useAuth } from "../store/Auth";
-import { images } from "../assets";
+import { useAuth } from "../../store/Auth";
+import { images } from "../../assets"; 
 import { useState } from "react";
 
 export const Navbar = () => {
@@ -18,7 +18,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header>
+    <header className="navbar-component-header">
       <div className="container navbar-container">
         <div className="logo-brand">
           <NavLink to="/">NanoTech</NavLink>

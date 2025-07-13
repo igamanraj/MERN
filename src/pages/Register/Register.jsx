@@ -4,7 +4,7 @@ import { useAuth } from "../../store/Auth";
 import { toast } from "sonner";
 import { images } from "../../assets"; // Adjust the path as necessary
 import "./Register.css";
-import  GoogleSignInButton  from "../../component/GoogleSignInButton";
+import  GoogleSignInButton  from "../../component/GoogleSignInButton/GoogleSignInButton";
 
 const profilePicture = Object.values(images);
 
@@ -87,7 +87,7 @@ export const Register = () => {
 
   return (
     <>
-      <section>
+      <section className="register-page-container">
         <main>
           <div className="section-registration">
             <div className="container">

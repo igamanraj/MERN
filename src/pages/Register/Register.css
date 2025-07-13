@@ -1,4 +1,5 @@
-/* Register.css - Compact Responsive Styles */
+.register-page-container{
+  /* Register.css - Compact Responsive Styles */
 
 /* Reset and Base Styles */
 * {
@@ -25,15 +26,16 @@ body {
 }
 
 .section-registration::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.05"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0.02"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.05"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0.02"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>')
+    no-repeat center;
   background-size: cover;
-  opacity: 0.3;
+  pointer-events: none;
 }
 
 .container {
@@ -69,7 +71,7 @@ body {
 .registration-form h2 {
   font-size: 1.8rem; /* Reduced from 2.5rem */
   font-weight: 500;
-  color: #ffffff;
+  color: #2c3e50;
   text-align: center;
   margin-bottom: 1.5rem; /* Reduced from 2rem */
   position: relative;
@@ -81,7 +83,7 @@ body {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 98%; /* Reduced from 30rem */
+  width: 124%; /* Reduced from 30rem */
   height: 3px;
   background: linear-gradient(90deg, #667eea, #764ba2);
   border-radius: 2px;
@@ -594,4 +596,6 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
 }

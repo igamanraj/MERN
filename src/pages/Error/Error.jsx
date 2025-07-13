@@ -3,6 +3,7 @@ import "./Error.css"; // Assuming you have a CSS file for styling
 export const Error = () => {
   return (
     <>
+    <main className="error-page-container">
       <section className="error-page">
         <div className="content">
           <h2 className="header">404</h2>
@@ -18,6 +19,8 @@ export const Error = () => {
           </div>
         </div>
       </section>
+    </main>
+      
     </>
   );
 };

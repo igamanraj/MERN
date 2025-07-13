@@ -6,8 +6,9 @@ export const Services = () => {
 
   return (
     <>
-      <section className="services-section">
-        <div className="container">
+      <section className=" services-page-container">
+        <div className="services-section">
+          <div className="container">
           <h1 className="services-title">Services</h1>
         </div>
         <div className="services-grid">
@@ -37,7 +38,9 @@ export const Services = () => {
             );
           })}
         </div>
-      </section>
+
+        </div>
+              </section>
     </>
   );
 };
