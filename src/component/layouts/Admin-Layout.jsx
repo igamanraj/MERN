@@ -6,10 +6,15 @@ import { useAuth } from "../../store/Auth";
 import { PuffLoader } from "react-spinners";
 import { toast } from "sonner";
 import { useState } from "react";
+import { images } from "../../assets";
 
 export const AdminLayout = () => {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const avatarSrc = user?.profilePicture?.startsWith("http")
+    ? user.profilePicture
+    : images[user.profilePicture];
 
   console.log("Admin Layout", user);
 
@@ -40,79 +45,81 @@ export const AdminLayout = () => {
   return (
     <>
       {/* Mobile Overlay */}
-      {sidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar}></div>}
-      
+      {sidebarOpen && (
+        <div className="sidebar-overlay" onClick={closeSidebar}></div>
+      )}
+
       <div className="admin-layout-container">
         <div className="admin-layout">
-        {/* Sidebar */}
-        <aside className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
-          <div className="sidebar-header">
-            <h2>Admin Panel</h2>
-            <button className="sidebar-close" onClick={closeSidebar}>
-              <FaTimes />
-            </button>
-          </div>
-          
-          <nav className="sidebar-nav">
-            <ul>
-              <li>
-                <NavLink to="/" onClick={closeSidebar}>
-                  <FaHome />
-                  <span>Home</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/admin/users" onClick={closeSidebar}>
-                  <FaUser />
-                  <span>Users</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/admin/contacts" onClick={closeSidebar}>
-                  <FaMessage />
-                  <span>Contacts</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/services" onClick={closeSidebar}>
-                  <FaRegListAlt />
-                  <span>Services</span>
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-          
-          <div className="sidebar-footer">
-            <div className="admin-info">
-              <div className="admin-avatar">
-                {user?.name?.charAt(0).toUpperCase()}
-              </div>
-              <div className="admin-details">
-                <span className="admin-name">{user? user.username : "Admin"}</span>
-                <span className="admin-role">Administrator</span>
+          {/* Sidebar */}
+          <aside className={`sidebar ${sidebarOpen ? "sidebar-open" : ""}`}>
+            <div className="sidebar-header">
+              <h2>Admin Panel</h2>
+              <button className="sidebar-close" onClick={closeSidebar}>
+                <FaTimes />
+              </button>
+            </div>
+
+            <nav className="sidebar-nav">
+              <ul>
+                <li>
+                  <NavLink to="/admin" onClick={closeSidebar}>
+                    <FaHome />
+                    <span>Home</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/admin/users" onClick={closeSidebar}>
+                    <FaUser />
+                    <span>Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/admin/contacts" onClick={closeSidebar}>
+                    <FaMessage />
+                    <span>Contacts</span>
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
+
+            <div className="sidebar-footer">
+              <div className="admin-info">
+                <div className="admin-avatar">
+                  <img
+                    src={avatarSrc}
+                    alt="Admin"
+                    style={{
+                      width: "35px",
+                      height: "35px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </div>
+                <div className="admin-details">
+                  <span className="admin-name">
+                    {user ? user.username : "Admin"}
+                  </span>
+                  <span className="admin-role">Administrator</span>
+                </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        {/* Main Content */}
-        <main className="admin-main">
-          <header className="admin-header">
-            <button className="sidebar-toggle" onClick={toggleSidebar}>
-              <FaBars />
-            </button>
-            <h1>Dashboard</h1>
-            
-          </header>
-          <div className="admin-welcome">
-            <h2>Welcome, {user ? user.username : ""}!</h2>
-            <p>You are logged in as an administrator.</p>
-          </div>
-          <div className="admin-content">
-            <Outlet />
-          </div>
-        </main>
-      </div>
+          {/* Main Content */}
+          <main className="admin-main">
+            <header className="admin-header">
+              <button className="sidebar-toggle" onClick={toggleSidebar}>
+                <FaBars />
+              </button>
+              <h1>Dashboard</h1>
+            </header>
+          
+            <div className="admin-content">
+              <Outlet />
+            </div>
+          </main>
+        </div>
       </div>
     </>
   );
