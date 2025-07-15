@@ -13,6 +13,7 @@ import { AdminLayout } from "../src/component/layouts/Admin-Layout.jsx"
 import { AdminUsers } from "../src/pages/protected/admin-user/Admin-Users.jsx";
 import { AdminContacts } from "../src/pages/protected/admin-contact/Admin-Contacts.jsx";
 import { AdminUpdate } from "./pages/protected/admin-update/Admin-Update.jsx";
+import { AdminHome } from "./pages/protected/admin-home/Admin-Home.jsx";
 import "./index.css"
 
 
@@ -36,6 +37,7 @@ const App = () => {
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
           <Route path="users" element={<AdminUsers />}/>
           <Route path="contacts" element={<AdminContacts />}/>
           <Route path="users/:id/edit" element={<AdminUpdate />}/>

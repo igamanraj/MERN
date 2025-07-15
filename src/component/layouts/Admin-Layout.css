@@ -1,20 +1,22 @@
-.admin-layout-container{
-  /* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
+/* Admin Layout Container - Root wrapper */
+.admin-layout-container {
   font-family: "Inter", "Segoe UI", sans-serif;
   background-color: #f8fafc;
   color: #334155;
   line-height: 1.6;
 }
 
+/* Reset styles for admin layout container */
+.admin-layout-container *,
+.admin-layout-container *::before,
+.admin-layout-container *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Loading container */
-.loading-container {
+.admin-loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +25,12 @@ body {
   gap: 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+}
+
+.admin-loading-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 /* Admin Layout Root - Completely separate from main site */
@@ -38,8 +46,8 @@ body {
   overflow: hidden;
 }
 
-/* Sidebar styles */
-.sidebar {
+/* Admin Sidebar styles */
+.admin-sidebar {
   width: 280px;
   background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
   display: flex;
@@ -51,7 +59,7 @@ body {
   position: relative;
 }
 
-.sidebar-header {
+.admin-sidebar-header {
   padding: 2rem 1.5rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
@@ -59,7 +67,7 @@ body {
   justify-content: space-between;
 }
 
-.sidebar-header h2 {
+.admin-sidebar-header h2 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -67,9 +75,10 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin: 0;
 }
 
-.sidebar-close {
+.admin-sidebar-close {
   display: none;
   background: none;
   border: none;
@@ -81,26 +90,33 @@ body {
   transition: all 0.3s ease;
 }
 
-.sidebar-close:hover {
+.admin-sidebar-close:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
 }
 
-/* Sidebar navigation */
-.sidebar-nav {
+/* Admin Sidebar navigation */
+.admin-sidebar-nav {
   flex: 1;
   padding: 1.5rem 1rem;
   overflow-y: auto;
 }
 
-.sidebar-nav ul {
+.admin-sidebar-nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin: 0;
+  padding: 0;
 }
 
-.sidebar-nav ul li a {
+.admin-sidebar-nav ul li {
+  display: block;
+  width: 100%;
+}
+
+.admin-sidebar-nav ul li a {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -112,10 +128,11 @@ body {
   font-weight: 500;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
-.sidebar-nav ul li a::before {
-  content: '';
+.admin-sidebar-nav ul li a::before {
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -125,24 +142,24 @@ body {
   transition: left 0.5s ease;
 }
 
-.sidebar-nav ul li a:hover::before {
+.admin-sidebar-nav ul li a:hover::before {
   left: 100%;
 }
 
-.sidebar-nav ul li a:hover {
+.admin-sidebar-nav ul li a:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   transform: translateX(4px);
 }
 
-.sidebar-nav ul li a.active {
+.admin-sidebar-nav ul li a.active {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #ffffff;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-.sidebar-nav ul li a.active::after {
-  content: '';
+.admin-sidebar-nav ul li a.active::after {
+  content: "";
   position: absolute;
   right: 0;
   top: 50%;
@@ -153,13 +170,19 @@ body {
   border-radius: 2px;
 }
 
-.sidebar-nav ul li a svg {
+.admin-sidebar-nav ul li a svg {
   font-size: 1.1rem;
   min-width: 20px;
+  color: inherit;
 }
 
-/* Sidebar footer */
-.sidebar-footer {
+.admin-sidebar-nav ul li a span {
+  font-size: 1rem;
+  color: inherit;
+}
+
+/* Admin Sidebar footer */
+.admin-sidebar-footer {
   padding: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: auto;
@@ -187,6 +210,14 @@ body {
   font-size: 1.1rem;
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.admin-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .admin-details {
@@ -199,14 +230,16 @@ body {
   font-weight: 600;
   color: #ffffff;
   font-size: 0.9rem;
+  margin: 0;
 }
 
 .admin-role {
   font-size: 0.8rem;
   color: #94a3b8;
+  margin: 0;
 }
 
-/* Main content area */
+/* Admin Main content area */
 .admin-main {
   flex: 1;
   display: flex;
@@ -217,9 +250,8 @@ body {
 }
 
 .admin-header {
-  background: #1F2B3D;
+  background: #1f2b3d;
   padding: 1.5rem 2rem;
-  /* border-bottom: 1px solid #e2e8f0; */
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -229,39 +261,41 @@ body {
   z-index: 100;
 }
 
-.sidebar-toggle {
+.admin-sidebar-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 1.2rem;
-  color: #64748b;
+  color: #ffffff;
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
 
-.sidebar-toggle:hover {
-  background: #f1f5f9;
-  color: #334155;
+.admin-sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 .admin-header h1 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #ffffff;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin: 0;
 }
 
 .admin-content {
   flex: 1;
   padding: 2rem;
-  background: #1F2B3D;
+  background: #1f2b3d;
   overflow-y: auto;
 }
+
 .admin-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -269,38 +303,40 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Sidebar overlay for mobile */
-.sidebar-overlay {
+/* Admin Sidebar overlay for mobile */
+.admin-sidebar-overlay {
   display: none;
 }
 
-/* Responsive Design */
+/* Responsive Design for Admin Panel */
 
-/* Tablet styles */
+/* Admin Tablet styles */
 @media (max-width: 1024px) {
-  .admin-header {
+  .admin-layout-container .admin-header {
     padding: 1.2rem 1.5rem;
   }
-  
-  .admin-content {
+
+  .admin-layout-container .admin-content {
     padding: 1.5rem;
   }
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
-  .sidebar {
-    position: absolute;
+/* Admin Mobile styles */
+@media (max-width: 769px) {
+  .admin-layout-container .admin-sidebar {
+    position: fixed;
     transform: translateX(-100%);
     width: 280px;
-    /* z-index: 10001; */
+    z-index: 10001;
+    height: 100vh;
   }
-  
-  .sidebar-open {
+
+  .admin-layout-container .admin-sidebar-open {
     transform: translateX(0);
+    z-index: 10001;
   }
-  
-  .sidebar-overlay {
+
+  .admin-layout-container .admin-sidebar-overlay {
     display: block;
     position: fixed;
     top: 0;
@@ -310,102 +346,120 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 10000;
   }
-  
-  .sidebar-close {
+
+  .admin-layout-container .admin-sidebar-close {
     display: block;
+    color: #ffffff;
   }
-  
-  .admin-main {
+
+  .admin-layout-container .admin-main {
     width: 100%;
   }
-  
-  .sidebar-toggle {
+
+  .admin-layout-container .admin-sidebar-toggle {
     display: block;
+    color: #ffffff;
   }
-  
-  .admin-header {
+
+  .admin-layout-container .admin-header {
     padding: 1rem 1.5rem;
   }
-  
-  .admin-header h1 {
+
+  .admin-layout-container .admin-header h1 {
     font-size: 1.5rem;
+    color: #ffffff;
   }
-  
-  .admin-content {
+
+  .admin-layout-container .admin-content {
     padding: 1rem;
   }
-  
-  .sidebar-nav ul li a {
-    padding: 0.8rem 1.2rem;
-  }
-  
-  .admin-info {
+
+  .admin-layout-container .admin-info {
     padding: 0.8rem;
+    display: flex;
   }
-  
-  .admin-avatar {
+
+  .admin-layout-container .admin-avatar {
     width: 35px;
     height: 35px;
     font-size: 1rem;
   }
 }
 
-/* Small mobile styles */
+/* Admin Small mobile styles */
 @media (max-width: 480px) {
-  .sidebar {
+  .admin-layout-container .admin-sidebar {
     width: 100%;
+    position: fixed;
+    z-index: 10001;
   }
-  
-  .admin-header {
+
+  .admin-layout-container .admin-sidebar-open {
+    z-index: 10001;
+  }
+
+  .admin-layout-container .admin-header {
     padding: 1rem;
   }
-  
-  .admin-header h1 {
+
+  .admin-layout-container .admin-header h1 {
     font-size: 1.3rem;
+    color: #ffffff;
   }
-  
-  .admin-content {
+
+  .admin-layout-container .admin-sidebar-toggle {
+    color: #ffffff;
+  }
+
+  .admin-layout-container .admin-content {
     padding: 0.8rem;
   }
-  
-  .sidebar-header {
+
+  .admin-layout-container .admin-sidebar-header {
     padding: 1.5rem 1rem 1rem;
   }
-  
-  .sidebar-nav {
+
+  .admin-layout-container .admin-sidebar-nav {
     padding: 1rem 0.8rem;
+    display: flex;
+    flex-direction: column;
   }
-  
-  .sidebar-footer {
+
+  .admin-layout-container .admin-sidebar-nav ul li a {
+    padding: 0.8rem 1rem;
+  }
+
+  .admin-layout-container .admin-sidebar-footer {
     padding: 1rem;
+    display: block;
   }
 }
 
-/* Smooth scrollbar for sidebar */
-.sidebar-nav::-webkit-scrollbar {
+/* Smooth scrollbar for admin sidebar */
+.admin-sidebar-nav::-webkit-scrollbar {
   width: 4px;
 }
 
-.sidebar-nav::-webkit-scrollbar-track {
+.admin-sidebar-nav::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
 }
 
-.sidebar-nav::-webkit-scrollbar-thumb {
+.admin-sidebar-nav::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 2px;
 }
 
-.sidebar-nav::-webkit-scrollbar-thumb:hover {
+.admin-sidebar-nav::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
 /* Animation for page transitions */
 .admin-content {
-  animation: fadeIn 0.3s ease-in-out;
+  animation: adminFadeIn 0.3s ease-in-out;
 }
 
-@keyframes fadeIn {
+@keyframes adminFadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -417,32 +471,29 @@ body {
 }
 
 /* Focus styles for accessibility */
-.sidebar-nav ul li a:focus,
-.sidebar-toggle:focus,
-.sidebar-close:focus {
+.admin-sidebar-nav ul li a:focus,
+.admin-sidebar-toggle:focus,
+.admin-sidebar-close:focus {
   outline: 2px solid #667eea;
   outline-offset: 2px;
 }
 
 /* Hover effects for better UX */
-.sidebar-nav ul li a:hover svg {
+.admin-sidebar-nav ul li a:hover svg {
   transform: scale(1.1);
   transition: transform 0.2s ease;
 }
 
 /* Active state animations */
-.sidebar-nav ul li a.active {
-  animation: activeGlow 2s ease-in-out infinite alternate;
+.admin-sidebar-nav ul li a.active {
+  animation: adminActiveGlow 2s ease-in-out infinite alternate;
 }
 
-@keyframes activeGlow {
+@keyframes adminActiveGlow {
   from {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   }
   to {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
   }
-}
-
-
 }

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../../store/Auth";
-import { images } from "../../assets"; 
+import { images } from "../../assets";
 import { useState } from "react";
 
 export const Navbar = () => {
@@ -10,8 +10,7 @@ export const Navbar = () => {
 
   const avatarSrc = user?.profilePicture?.startsWith("http")
     ? user.profilePicture
-    : images[user.profilePicture] ;
-
+    : images[user.profilePicture];
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -19,70 +18,100 @@ export const Navbar = () => {
 
   return (
     <header className="navbar-component-header">
-      <div className="container navbar-container">
-        <div className="logo-brand">
-          <NavLink to="/">NanoTech</NavLink>
+      <div className="navbar-container">
+        <div className="navbar-logo-brand">
+          <NavLink to="/" className="navbar-logo-link">
+            NanoTech
+          </NavLink>
         </div>
 
-        <div className="hamburger" onClick={toggleMenu}>
-          <span className={menuOpen ? "open" : ""}></span>
-          <span className={menuOpen ? "open" : ""}></span>
-          <span className={menuOpen ? "open" : ""}></span>
+        <div className="navbar-hamburger" onClick={toggleMenu}>
+          <span className={`navbar-hamburger-line ${menuOpen ? "navbar-hamburger-line-open" : ""}`}></span>
+          <span className={`navbar-hamburger-line ${menuOpen ? "navbar-hamburger-line-open" : ""}`}></span>
+          <span className={`navbar-hamburger-line ${menuOpen ? "navbar-hamburger-line-open" : ""}`}></span>
         </div>
 
-        <nav className={menuOpen ? "open" : ""}>
-          <ul>
-            <li>
-              <NavLink to="/" onClick={() => setMenuOpen(false)}>
+        <nav className={`navbar-nav ${menuOpen ? "navbar-nav-open" : ""}`}>
+          <ul className="navbar-links">
+            <li className="navbar-link">
+              <NavLink 
+                to="/" 
+                className="navbar-link-item"
+                onClick={() => setMenuOpen(false)}
+              >
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/About" onClick={() => setMenuOpen(false)}>
+            <li className="navbar-link">
+              <NavLink 
+                to="/About" 
+                className="navbar-link-item"
+                onClick={() => setMenuOpen(false)}
+              >
                 About
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/Services" onClick={() => setMenuOpen(false)}>
+            <li className="navbar-link">
+              <NavLink 
+                to="/Services" 
+                className="navbar-link-item"
+                onClick={() => setMenuOpen(false)}
+              >
                 Services
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/Contact" onClick={() => setMenuOpen(false)}>
+            <li className="navbar-link">
+              <NavLink 
+                to="/Contact" 
+                className="navbar-link-item"
+                onClick={() => setMenuOpen(false)}
+              >
                 Contact
               </NavLink>
             </li>
             {isLoggedIn ? (
               <>
-                <li>
-                  <NavLink to="/Logout" onClick={() => setMenuOpen(false)}>
+                <li className="navbar-link">
+                  <NavLink 
+                    to="/Logout" 
+                    className="navbar-link-item"
+                    onClick={() => setMenuOpen(false)}
+                  >
                     Logout
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="#" onClick={() => setMenuOpen(false)}>
+                <li className="navbar-link">
+                  <NavLink 
+                    to="#" 
+                    className="navbar-link-item navbar-avatar-link"
+                    onClick={() => setMenuOpen(false)}
+                  >
                     <img
                       src={avatarSrc}
                       alt="User"
-                      style={{
-                        width: "35px",
-                        height: "35px",
-                        border: "2px solid #646CFF",
-                        borderRadius: "50%",
-                      }}
+                      className="navbar-user-avatar"
+                      style={{ width: "30px", height: "30px", borderRadius: "50%" }}
                     />
                   </NavLink>
                 </li>
               </>
             ) : (
               <>
-                <li>
-                  <NavLink to="/Register" onClick={() => setMenuOpen(false)}>
+                <li className="navbar-link">
+                  <NavLink 
+                    to="/Register" 
+                    className="navbar-link-item"
+                    onClick={() => setMenuOpen(false)}
+                  >
                     Register
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/Login" onClick={() => setMenuOpen(false)}>
+                <li className="navbar-link">
+                  <NavLink 
+                    to="/Login" 
+                    className="navbar-link-item"
+                    onClick={() => setMenuOpen(false)}
+                  >
                     Login
                   </NavLink>
                 </li>

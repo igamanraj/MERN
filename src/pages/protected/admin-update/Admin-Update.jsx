@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../../../store/Auth";
 import { toast } from "sonner";
 import "./Admin-Update.css";
@@ -9,15 +9,22 @@ export const AdminUpdate = () => {
     username: "",
     email: "",
     phone: "",
+    isAdmin: false,
+  });
+
+  // Store original data to compare changes
+  const [originalData, setOriginalData] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    isAdmin: false,
   });
 
   const navigate = useNavigate();
   const params = useParams();
-  // console.log("params single users: ", params);
   const { authorizationToken, API } = useAuth();
 
   // get single user data
-
   const getSingleUserData = async () => {
     try {
       const response = await fetch(`${API}/admin/users/${params.id}`, {
@@ -26,9 +33,19 @@ export const AdminUpdate = () => {
           Authorization: authorizationToken,
         },
       });
-      const data = await response.json();
-      console.log(`users single data: ${data}`);
-      setData(data);
+      const userData = await response.json();
+      console.log(`users single data: `, userData);
+      
+      // Set both current data and original data
+      const userState = {
+        username: userData.username || "",
+        email: userData.email || "",
+        phone: userData.phone || "",
+        isAdmin: userData.isAdmin || false,
+      };
+      
+      setData(userState);
+      setOriginalData(userState); // Store original data for comparison
     } catch (error) {
       console.log(error);
     }
@@ -48,9 +65,35 @@ export const AdminUpdate = () => {
     });
   };
 
+  // Handle admin status toggle
+  const handleAdminToggle = (e) => {
+    setData({
+      ...data,
+      isAdmin: e.target.checked,
+    });
+  };
+
+  // Function to check if data has changed
+  const hasDataChanged = () => {
+    return (
+      data.username !== originalData.username ||
+      data.email !== originalData.email ||
+      data.phone !== originalData.phone ||
+      data.isAdmin !== originalData.isAdmin
+    );
+  };
+
   // to update the data dynamically
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if nothing has changed
+    if (!hasDataChanged()) {
+      toast.info("No changes detected", {
+        description: "No modifications were made to the user data.",
+      });
+      return;
+    }
 
     try {
       const response = await fetch(`${API}/admin/users/update/${params.id}`, {
@@ -63,13 +106,18 @@ export const AdminUpdate = () => {
       });
       const res_data = await response.json();
       if (response.ok) {
-        toast.success("Updated Successfully");
+        toast.success("User updated successfully", {
+          description: "All changes have been saved.",
+        });
         navigate("/admin/users");
       } else {
         toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
     } catch (error) {
       console.log(error);
+      toast.error("Failed to update user", {
+        description: "Please try again later.",
+      });
     }
   };
 
@@ -84,6 +132,7 @@ export const AdminUpdate = () => {
             <section className="section-form">
               <form onSubmit={handleSubmit}>
                 <div>
+                  <h3><span><NavLink to="/admin/users">⬅ Go Back</NavLink></span></h3>
                   <label htmlFor="username">Username</label>
                   <input
                     type="text"
@@ -120,9 +169,29 @@ export const AdminUpdate = () => {
                     required
                   />
                 </div>
+                <div className="admin-status-container">
+                  <label className="admin-status-label">Admin Status</label>
+                  <div className="admin-status-toggle">
+                    <label className="toggle-switch">
+                      <input 
+                        name="isAdmin"
+                        type="checkbox" 
+                        checked={data.isAdmin}
+                        onChange={handleAdminToggle}
+                      />
+                      <span className="toggle-slider"></span>
+                    </label>
+                    <span className={`toggle-label ${data.isAdmin ? 'active' : ''}`}>
+                      {data.isAdmin ? 'Administrator' : 'Regular User'}
+                    </span>
+                  </div>
+                </div>
                 <br />
-                <button type="submit" className="btn btn-submit">
-                  Update
+                <button 
+                  type="submit" 
+                  className={`btn btn-submit ${!hasDataChanged() ? 'btn-disabled' : ''}`}
+                >
+                  Update User
                 </button>
               </form>
             </section>
