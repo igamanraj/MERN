@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import "./ProfileDropdown.css";
+import { useRef, useEffect } from "react";
 import { useAuth } from "../../store/Auth";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
+import "./ProfileDropDown.css";
 
 export const ProfileDropdown = ({ isOpen, onClose, avatarSrc }) => {
   const { user } = useAuth();
